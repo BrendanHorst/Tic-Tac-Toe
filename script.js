@@ -2,22 +2,19 @@ let turn = Math.floor(2 * Math.random());
 const players = ['X', 'O'];
 
 const win = (grid, player) => {
-  console.log(player);
-  if (grid[0].textContent == player && grid[4].textContent == player &&
-    grid[8].textContent == player) {
-    return true;
+  for (let i = 0; i <= 2; i += 2) { //checks both diagonals
+    if (grid[0 + i].textContent == player && grid[4].textContent == player &&
+      grid[8 - i].textContent == player) {
+      return true;
+    }
   }
-  if (grid[2].textContent == player && grid[4].textContent == player &&
-    grid[6].textContent == player) {
-    return true;
-  }
-  for (let count = 0; count <= 2; count++) {
+  for (let count = 0; count <= 2; count++) { //checks columns
     if (grid[count].textContent == player && grid[count + 3].textContent == player &&
       grid[count + 6].textContent == player) {
       return true;
     }
   }
-  for (let count = 0; count <= 6; count += 3) {
+  for (let count = 0; count <= 6; count += 3) { //checks rows
     if (grid[count].textContent == player && grid[count + 1].textContent == player &&
       grid[count + 2].textContent == player) {
       return true;
