@@ -5,24 +5,25 @@ const players = ['X', 'O'];
 function win() {
   if (grid[0].textContent == players[turn] && grid[4].textContent == players[turn] &&
     grid[8].textContent == players[turn]) {
-    console.log("you win");
-  }
+      return true;
+    }
   if (grid[2].textContent == players[turn] && grid[4].textContent == players[turn] &&
     grid[6].textContent == players[turn]) {
-    console.log("you win");
+      return true;
   }
   for (let count = 0; count <= 2; count++) {
     if (grid[count].textContent == players[turn] && grid[count + 3].textContent == players[turn] &&
       grid[count + 6].textContent == players[turn]) {
-      console.log("you win");
-    }
+        return true;
+      }
   }
   for (let count = 0; count <= 6; count += 3) {
     if (grid[count].textContent == players[turn] && grid[count + 1].textContent == players[turn] &&
       grid[count + 2].textContent == players[turn]) {
-      console.log("you win");
-    }
+        return true;
+      }
   }
+  return false;
 }
 for (let countCells = 0; countCells <= 8; countCells++) {
   let box = document.createElement('div');
@@ -30,7 +31,11 @@ for (let countCells = 0; countCells <= 8; countCells++) {
   box.classList.add('cell');
   box.addEventListener('mousedown', event => {
     if (event.target.textContent === '') event.target.textContent = players[turn];
-    win();
+    if (win()){
+      let winner = document.createElement('p');
+      document.body.appendChild(winner);
+      winner.textContent =`${players[turn]} wins!`;
+    }
     if (turn == 0) {
       turn = 1;
     } else {
