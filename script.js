@@ -28,8 +28,8 @@ function win() {
 const placeToken = (event) => {
   if (event.target.textContent === '') event.target.textContent = players[turn];
   if (win()) {
-    document.body.appendChild(document.createElement('p'));
     document.querySelectorAll('p')[1].textContent = `${players[turn]} wins!`;
+    document.querySelectorAll('p')[1].style.display = 'block';
     let targets = document.querySelectorAll('div.cell');
     for (target of targets) target.removeEventListener('mousedown', placeToken);
   }
@@ -37,6 +37,18 @@ const placeToken = (event) => {
   document.querySelector('p').textContent = `${players[turn]}'s turn`;
   event.target.removeEventListener('mousedown', placeToken);
 }
+
+document.body.appendChild(document.createElement('button'));
+document.querySelector('button').textContent = 'reset';
+document.querySelector('button').addEventListener('mousedown', () => {
+  for (cell of grid) {
+    cell.textContent = '';
+    cell.addEventListener('mousedown', placeToken);
+  }
+  document.querySelectorAll('p')[1].style.display = 'none';
+  turn = Math.floor(2 * Math.random());
+  document.querySelector('p').textContent = `${players[turn]}'s turn`;
+})
 
 document.body.appendChild(document.createElement('p'));
 document.querySelector('p').textContent = `${players[turn]}'s turn`;
@@ -47,3 +59,4 @@ for (let countCells = 0; countCells <= 8; countCells++) {
   box.addEventListener('mousedown', placeToken);
   document.getElementById('gridContainer').appendChild(box);
 }
+document.body.appendChild(document.createElement('p'));
