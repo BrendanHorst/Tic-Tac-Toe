@@ -39,6 +39,7 @@ const placeToken = (event) => {
   } else {
     turn = 0;
   }
+  event.target.removeEventListener('mousedown', placeToken);
 }
 for (let countCells = 0; countCells <= 8; countCells++) {
   let box = document.createElement('div');
