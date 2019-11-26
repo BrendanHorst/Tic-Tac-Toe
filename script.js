@@ -62,7 +62,7 @@ const placeToken = (event) => {
   event.target.removeEventListener('mousedown', placeToken);
 }
 
-document.body.appendChild(document.createElement('button'));
+document.getElementById('gameInfo').appendChild(document.createElement('button'));
 document.querySelector('button').textContent = 'reset';
 document.querySelector('button').addEventListener('mousedown', () => {
   for (cell of document.querySelectorAll('div.cell')) {
