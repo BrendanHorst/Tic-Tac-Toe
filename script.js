@@ -9,13 +9,14 @@ function win() {
       console.log("you win");
     }
   }
-  for (let count2 = 0; count <= 6; count += 3) {
+  for (let count = 0; count <= 6; count += 3) {
     if (grid[count].textContent == 'X' && grid[count + 1].textContent == 'X' &&
     grid[count + 2].textContent == 'X') {
       console.log("you win");
     }
   }
-  for (let count2 = 0; count2 <= 8; count2++) {
+}
+  for (let countCells = 0; countCells <= 8; countCells++) {
     let box = document.createElement('div');
     grid.push(box);
     box.classList.add('cell');
