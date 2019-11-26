@@ -28,19 +28,18 @@ function win() {
 const placeToken = (event) => {
   if (event.target.textContent === '') event.target.textContent = players[turn];
   if (win()) {
-    let winner = document.createElement('p');
-    document.body.appendChild(winner);
-    winner.textContent = `${players[turn]} wins!`;
+    document.body.appendChild(document.createElement('p'));
+    document.querySelectorAll('p')[1].textContent = `${players[turn]} wins!`;
     let targets = document.querySelectorAll('div.cell');
     for (target of targets) target.removeEventListener('mousedown', placeToken);
   }
-  if (turn == 0) {
-    turn = 1;
-  } else {
-    turn = 0;
-  }
+  turn = turn === 0 ? 1 : 0;
+  document.querySelector('p').textContent = `${players[turn]}'s turn`;
   event.target.removeEventListener('mousedown', placeToken);
 }
+
+document.body.appendChild(document.createElement('p'));
+document.querySelector('p').textContent = `${players[turn]}'s turn`;
 for (let countCells = 0; countCells <= 8; countCells++) {
   let box = document.createElement('div');
   grid.push(box);
