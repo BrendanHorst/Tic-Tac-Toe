@@ -1,5 +1,6 @@
 let turn = Math.floor(2 * Math.random());
 const players = ['X', 'O'];
+let names = [prompt("Enter player 1's name:"), prompt("Enter player 2's name:")];
 
 const win = (grid, player) => {
   for (let i = 0; i <= 2; i += 2) { //checks both diagonals
@@ -33,15 +34,16 @@ const tie = (grid) => {
 const placeToken = (event) => {
   if (event.target.textContent === '') event.target.textContent = players[turn];
   if (win(document.querySelectorAll('div.cell'), players[turn])) {
-    document.querySelectorAll('p')[1].textContent = `${players[turn]} wins!`;
+    document.querySelectorAll('p')[1].textContent = `${names[turn]} wins!`;
     document.querySelectorAll('p')[1].style.display = 'block';
     let targets = document.querySelectorAll('div.cell');
     for (target of targets) target.removeEventListener('mousedown', placeToken);
   } else if (tie(document.querySelectorAll('div.cell'))){
     document.querySelectorAll('p')[1].textContent = "You all lose!";
+    document.querySelectorAll('p')[1].style.display = 'block';
   }
   turn = turn === 0 ? 1 : 0;
-  document.querySelector('p').textContent = `${players[turn]}'s turn`;
+  document.querySelector('p').textContent = `${names[turn]}'s turn`;
   event.target.removeEventListener('mousedown', placeToken);
 }
 
@@ -54,11 +56,11 @@ document.querySelector('button').addEventListener('mousedown', () => {
   }
   document.querySelectorAll('p')[1].style.display = 'none';
   turn = Math.floor(2 * Math.random());
-  document.querySelector('p').textContent = `${players[turn]}'s turn`;
+  document.querySelector('p').textContent = `${names[turn]}'s turn`;
 })
 
 document.body.appendChild(document.createElement('p'));
-document.querySelector('p').textContent = `${players[turn]}'s turn`;
+document.querySelector('p').textContent = `${names[turn]}'s turn`;
 for (let countCells = 0; countCells <= 8; countCells++) {
   let box = document.createElement('div');
   box.classList.add('cell');
