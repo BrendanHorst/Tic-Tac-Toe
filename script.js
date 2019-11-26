@@ -3,14 +3,12 @@ const players = ['X', 'O'];
 let names = ['Player 1', 'Player 2'];
 
 for (let i = 0; i < 2; i++) {
-  do {
-    let input = prompt(`Enter name for ${names[i]}:`);
-    if (input !== null) names[i] = input;
-  } while (names[i].length === 0);
-  do {
-    let input = prompt(`Enter symbol for ${names[i]} : \n(Default: ${players[i]})`);
-    if (input !== null) players[i] = input;
-  } while (players[i].length !== 1);
+  let input = prompt(`Enter name for ${names[i]}:`);
+  if (input !== null && input.length > 0) names[i] = input;
+
+  input = prompt(`Enter symbol for ${names[i]}:\n(1 - 3 characters)\n(Default: ${players[i]})`);
+  if (input !== null && input.length > 0 && input.length < 4) players[i] = input;
+
 
   let info = document.createElement('p');
   info.textContent = `${players[i]}: ${names[i]}`;
