@@ -48,7 +48,7 @@ const placeToken = (event) => {
 document.body.appendChild(document.createElement('button'));
 document.querySelector('button').textContent = 'reset';
 document.querySelector('button').addEventListener('mousedown', () => {
-  for (cell of grid) {
+  for (cell of document.querySelectorAll('div.cell')) {
     cell.textContent = '';
     cell.addEventListener('mousedown', placeToken);
   }
