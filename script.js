@@ -2,6 +2,12 @@ let turn = Math.floor(2 * Math.random());
 const players = ['X', 'O'];
 let names = [prompt("Enter player 1's name:"), prompt("Enter player 2's name:")];
 
+for (let i = 0; i < 2; i++) {
+  do {
+    players[i] = prompt(`Enter symbol for ${names[i]} : \n(Default: ${players[i]})`);
+  } while (players[i].length !== 1);
+}
+
 const win = (grid, player) => {
   for (let i = 0; i <= 2; i += 2) { //checks both diagonals
     if (grid[0 + i].textContent == player && grid[4].textContent == player &&
@@ -24,8 +30,8 @@ const win = (grid, player) => {
   return false;
 }
 const tie = (grid) => {
-  for (let cell of grid){
-    if (cell.textContent == ''){
+  for (let cell of grid) {
+    if (cell.textContent == '') {
       return false
     }
   }
@@ -38,7 +44,7 @@ const placeToken = (event) => {
     document.querySelectorAll('p')[1].style.display = 'block';
     let targets = document.querySelectorAll('div.cell');
     for (target of targets) target.removeEventListener('mousedown', placeToken);
-  } else if (tie(document.querySelectorAll('div.cell'))){
+  } else if (tie(document.querySelectorAll('div.cell'))) {
     document.querySelectorAll('p')[1].textContent = "You all lose!";
     document.querySelectorAll('p')[1].style.display = 'block';
   }
