@@ -25,6 +25,14 @@ function win() {
   }
   return false;
 }
+function tie(){
+  for (let cell of grid){
+    if (cell.textContent == ''){
+      return false
+    }
+  }
+  return true
+}
 const placeToken = (event) => {
   if (event.target.textContent === '') event.target.textContent = players[turn];
   if (win()) {
@@ -32,6 +40,8 @@ const placeToken = (event) => {
     document.querySelectorAll('p')[1].style.display = 'block';
     let targets = document.querySelectorAll('div.cell');
     for (target of targets) target.removeEventListener('mousedown', placeToken);
+  } else if (tie()){
+    document.querySelectorAll('p')[1].textContent = "You all lose!";
   }
   turn = turn === 0 ? 1 : 0;
   document.querySelector('p').textContent = `${players[turn]}'s turn`;
