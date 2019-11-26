@@ -1,5 +1,5 @@
 let grid = []
-let turn = 0;
+let turn = Math.floor(2 * Math.random());
 const players = ['X', 'O'];
 
 function win() {
